@@ -1,3 +1,15 @@
 page-about {
-
+  ion-card-content{
+    text-align: left;
+    vertical-align: center;
+  }
+  img{
+    width: 70px;
+    height: 70px;
+    border-radius: 65px;
+    margin:80px auto;
+  }
+  ion-avatar{
+    text-align: center;
+  }
 }
