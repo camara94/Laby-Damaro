@@ -55,4 +55,15 @@
     </ion-item>
   </ion-list>
 
+  <ion-fab right bottom (click)="onAddService()">
+    <button ion-fab [hidden]="favorite">
+      <ion-icon name="heart-outline"></ion-icon>
+    </button>
+  </ion-fab>
+  <ion-fab right bottom (click)="onAddService()">
+    <button ion-fab *ngIf="favorite">
+      <ion-icon name="heart"></ion-icon>
+    </button>
+  </ion-fab>
+
 </ion-content>

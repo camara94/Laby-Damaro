@@ -18,6 +18,7 @@ import { LeaderProvider } from '../providers/leader/leader';
 import { PromotionProvider } from '../providers/promotion/promotion';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
 import {ContactService} from "../pages/Services/contact.service";
+import { ServicesProvider } from '../providers/services/services';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {ContactService} from "../pages/Services/contact.service";
     LeaderProvider,
     PromotionProvider,
     ProcessHttpmsgProvider,
-    ProcessHttpmsgProvider
+    ProcessHttpmsgProvider,
+    ServicesProvider
   ]
 })
 export class AppModule {}

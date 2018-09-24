@@ -16,34 +16,38 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card>
-    <ion-card-header color="primary">{{contact.titre}}</ion-card-header>
-    <ion-card-content>
-      <address>
-        <p *ngFor="let line of contact.description;let i=index">
-          <ion-icon *ngIf="i==3" name="call">:</ion-icon>
-          <ion-icon *ngIf="i==4" name="print">:</ion-icon>
-          <ion-icon *ngIf="i==5" name="mail">:</ion-icon>
-          {{line}}
-        </p>
-      </address>
-    </ion-card-content>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <button ion-button clear color="primary" icon-left full>
-            <ion-icon name="call"></ion-icon>
-            CALL
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear color="primary" icon-left full>
-            <ion-icon name="mail"></ion-icon>
-            EMAIL
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+<ion-content>
+
+  <ion-card >
+      
+      <ion-card-content>
+        <ion-card-title color="primary">
+          Location Information
+        </ion-card-title>
+        <address>
+          <p>121, Clear Water Bay Road</p>
+          <p> Clear Water Bay, Kowloon</p>
+          <p> HONG KONG</p>
+          <p> <ion-icon name="call"></ion-icon>: +852 1234 5678</p>
+          <p> <ion-icon name="print"></ion-icon>: +852 8765 4321</p>
+          <p> <ion-icon name="mail"></ion-icon>: confusion@food.net</p>
+        </address>
+      </ion-card-content>
+      <ion-row no-padding>
+          <ion-col>
+            <button ion-button clear small color="primary" icon-start>
+              <ion-icon name='call'></ion-icon>
+              CALL
+            </button>
+          </ion-col>
+          
+          <ion-col text-right>
+            <button ion-button clear small color="primary" icon-start>
+              <ion-icon name='mail'></ion-icon>
+              EMAIL
+            </button>
+          </ion-col>
+        </ion-row>
+    </ion-card>
+
 </ion-content>
