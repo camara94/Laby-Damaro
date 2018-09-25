@@ -55,7 +55,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-fab right bottom (click)="onAddService()">
+  <ion-fab right bottom (click)="onAddService()" (click)="addFavorites(dish)">
     <button ion-fab [hidden]="favorite">
       <ion-icon name="heart-outline"></ion-icon>
     </button>

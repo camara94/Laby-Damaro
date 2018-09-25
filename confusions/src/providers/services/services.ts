@@ -19,6 +19,7 @@ export class ServicesProvider {
     this.favorites.push(id);
     return true;
   }
+
   isFavorite(id:number):boolean{
     return this.favorites.some(el => el === id);
   }

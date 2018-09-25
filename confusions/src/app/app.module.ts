@@ -19,6 +19,8 @@ import { PromotionProvider } from '../providers/promotion/promotion';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
 import {ContactService} from "../pages/Services/contact.service";
 import { ServicesProvider } from '../providers/services/services';
+import { FavoritesProvider } from '../providers/favorites/favorites';
+import {FavoritesPage} from "../pages/favorites/favorites";
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { ServicesProvider } from '../providers/services/services';
     AboutPage,
     ContactPage,
     MenuPage,
-    DishdetailPage
+    DishdetailPage,
+    FavoritesPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ import { ServicesProvider } from '../providers/services/services';
     AboutPage,
     ContactPage,
     MenuPage,
-    DishdetailPage
+    DishdetailPage,
+    FavoritesPage
   ],
   providers: [
     StatusBar,
@@ -55,7 +59,8 @@ import { ServicesProvider } from '../providers/services/services';
     PromotionProvider,
     ProcessHttpmsgProvider,
     ProcessHttpmsgProvider,
-    ServicesProvider
+    ServicesProvider,
+    FavoritesProvider
   ]
 })
 export class AppModule {}
