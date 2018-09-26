@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {ActionSheetController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Dish} from "../shared/dish";
 import { ServicesProvider } from './../../providers/services/services';
 import {FavoritesProvider} from "../../providers/favorites/favorites";
+import {AddcommentPage} from "../addcomment/addcomment";
 
 /**
  * Generated class for the DishdetailPage page.
@@ -25,7 +26,8 @@ export class DishdetailPage {
               @Inject('BaseURL') private BaseURL,
               private disheService:ServicesProvider,
               private favoriteservice:FavoritesProvider,
-              private toastCtrl:ToastController) {
+              private toastCtrl:ToastController,
+              private actionSheetCtrl:ActionSheetController) {
     this.dish = navParams.get('dish');
     this.numcomments = this.dish.comments.length;
     let total = 0;
@@ -52,4 +54,32 @@ export class DishdetailPage {
     }).present();
   }
 
-}
+    presentActionSheet() {
+      const actionSheet = this.actionSheetCtrl.create({
+        title: 'Select Actions',
+        buttons: [
+          {
+            text: 'Add to Favorites',
+            role: 'destructive',
+            handler: () => {
+              console.log('Destructive clicked');
+            }
+          },{
+            text: 'Add Comment',
+            handler: () => {
+              console.log('Archive clicked');
+              this.navCtrl.push(AddcommentPage);
+            }
+          },{
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }
+        ]
+      });
+      actionSheet.present();
+    }
+  }
+
