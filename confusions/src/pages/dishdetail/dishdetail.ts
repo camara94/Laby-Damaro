@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Dish} from "../shared/dish";
 import { ServicesProvider } from './../../providers/services/services';
 import {FavoritesProvider} from "../../providers/favorites/favorites";
@@ -24,7 +24,8 @@ export class DishdetailPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               @Inject('BaseURL') private BaseURL,
               private disheService:ServicesProvider,
-              private favoriteservice:FavoritesProvider) {
+              private favoriteservice:FavoritesProvider,
+              private toastCtrl:ToastController) {
     this.dish = navParams.get('dish');
     this.numcomments = this.dish.comments.length;
     let total = 0;
@@ -33,17 +34,22 @@ export class DishdetailPage {
     this.favorite = this.disheService.isFavorite(this.dish.id);
   }
 
-  onAddService(){
+  /*onAddService(){
     console.log('add favorite',this.dish.id);
     this.favorite = this.disheService.addFavorite(this.dish.id);
-  }
+  }*/
   ionViewDidLoad() {
     console.log('ionViewDidLoad DishdetailPage');
   }
 
-  addFavorites(dish: Dish) {
-    console.log('Adding to Favorites', dish.id);
-    this.favoriteservice.addFavorite(dish.id);
+  addFavorites() {
+    console.log('Adding to Favorites', this.dish.id);
+    this.favorite = this.favoriteservice.addFavorite(this.dish.id);
+    this.toastCtrl.create({
+      message: 'Dish ' + this.dish.id + ' added successuffully',
+      position:'top',
+      duration:3000
+    }).present();
   }
 
 }
