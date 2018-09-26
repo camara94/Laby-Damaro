@@ -21,6 +21,7 @@ import {ContactService} from "../pages/Services/contact.service";
 import { ServicesProvider } from '../providers/services/services';
 import { FavoritesProvider } from '../providers/favorites/favorites';
 import {FavoritesPage} from "../pages/favorites/favorites";
+import {ReservationPage} from "../pages/reservation/reservation";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {FavoritesPage} from "../pages/favorites/favorites";
     ContactPage,
     MenuPage,
     DishdetailPage,
-    FavoritesPage
+    FavoritesPage,
+    ReservationPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import {FavoritesPage} from "../pages/favorites/favorites";
     ContactPage,
     MenuPage,
     DishdetailPage,
-    FavoritesPage
+    FavoritesPage,
+    ReservationPage
   ],
   providers: [
     StatusBar,
