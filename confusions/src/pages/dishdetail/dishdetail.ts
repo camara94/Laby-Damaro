@@ -1,9 +1,14 @@
-import { Component, Inject } from '@angular/core';
-import {ActionSheetController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Component, Inject } from '@angular/core';
+import {
+  ActionSheetController, IonicPage, ModalController, NavController, NavParams, ToastController,
+  ViewController
+} from 'ionic-angular';
 import {Dish} from "../shared/dish";
 import { ServicesProvider } from './../../providers/services/services';
 import {FavoritesProvider} from "../../providers/favorites/favorites";
 import {AddcommentPage} from "../addcomment/addcomment";
+
+
 
 /**
  * Generated class for the DishdetailPage page.
@@ -23,11 +28,13 @@ export class DishdetailPage {
   numcomments: number;
   favorite:boolean;
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              @Inject('BaseURL') private BaseURL,
               private disheService:ServicesProvider,
               private favoriteservice:FavoritesProvider,
               private toastCtrl:ToastController,
-              private actionSheetCtrl:ActionSheetController) {
+              private actionSheetCtrl:ActionSheetController,
+              private  viewCtrl:ViewController,
+              private modalCtrl:ModalController,
+              @Inject('BaseURL') private BaseURL) {
     this.dish = navParams.get('dish');
     this.numcomments = this.dish.comments.length;
     let total = 0;
@@ -36,10 +43,6 @@ export class DishdetailPage {
     this.favorite = this.disheService.isFavorite(this.dish.id);
   }
 
-  /*onAddService(){
-    console.log('add favorite',this.dish.id);
-    this.favorite = this.disheService.addFavorite(this.dish.id);
-  }*/
   ionViewDidLoad() {
     console.log('ionViewDidLoad DishdetailPage');
   }
@@ -68,7 +71,8 @@ export class DishdetailPage {
             text: 'Add Comment',
             handler: () => {
               console.log('Archive clicked');
-              this.navCtrl.push(AddcommentPage);
+              //this.navCtrl.push(AddcommentPage);
+               this.openComment();
             }
           },{
             text: 'Cancel',
@@ -81,5 +85,16 @@ export class DishdetailPage {
       });
       actionSheet.present();
     }
+
+  openComment() {
+    let modal = this.modalCtrl.create(AddcommentPage);
+    modal.onDidDismiss((data) => {
+      // do something with data
+      if(data)
+        this.dish.comments.push(data);
+    });
+    modal.present();
   }
+
+}
 

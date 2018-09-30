@@ -24,7 +24,6 @@ import {FavoritesPage} from "../pages/favorites/favorites";
 import {ReservationPage} from "../pages/reservation/reservation";
 import {AddcommentPage} from "../pages/addcomment/addcomment";
 
-
 @NgModule({
   declarations: [
     MyApp,
