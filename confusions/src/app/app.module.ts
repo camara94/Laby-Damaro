@@ -5,6 +5,7 @@ import { MenuPage } from './../pages/menu/menu';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from "@ionic/storage";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -23,6 +24,7 @@ import { FavoritesProvider } from '../providers/favorites/favorites';
 import {FavoritesPage} from "../pages/favorites/favorites";
 import {ReservationPage} from "../pages/reservation/reservation";
 import {AddcommentPage} from "../pages/addcomment/addcomment";
+import {LoginPage} from "../pages/login/login";
 
 @NgModule({
   declarations: [
@@ -34,12 +36,14 @@ import {AddcommentPage} from "../pages/addcomment/addcomment";
     DishdetailPage,
     FavoritesPage,
     ReservationPage,
-    AddcommentPage
+    AddcommentPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -51,7 +55,8 @@ import {AddcommentPage} from "../pages/addcomment/addcomment";
     DishdetailPage,
     FavoritesPage,
     ReservationPage,
-    AddcommentPage
+    AddcommentPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
