@@ -71,7 +71,6 @@ export class DishdetailPage {
             text: 'Add Comment',
             handler: () => {
               console.log('Archive clicked');
-              //this.navCtrl.push(AddcommentPage);
                this.openComment();
             }
           },{
