@@ -5,6 +5,7 @@ import {
 } from 'ionic-angular';
 import { FavoritesProvider} from "../../providers/favorites/favorites";
 import { Dish} from "../shared/dish";
+import { Storage } from "@ionic/storage";
 
 /**
  * Generated class for the FavoritesPage page.
@@ -21,19 +22,21 @@ export class FavoritesPage implements OnInit {
 
   favorites: Dish[];
   errMess: string;
-
+  id:number;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private favoriteservice: FavoritesProvider,
               private toastCtrl:ToastController,
               private loadingCtrl:LoadingController,
               private alertCtrl:AlertController,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') private BaseURL,
+              private storage : Storage) {
   }
 
   ngOnInit() {
     this.favoriteservice.getFavorites()
       .subscribe(favorites => this.favorites = favorites,
         errmess => this.errMess = errmess);
+    this.storage.set('dish',this.favorites);
   }
 
   ionViewDidLoad() {
@@ -69,6 +72,7 @@ export class FavoritesPage implements OnInit {
              this.favoriteservice.deleteFavorite(id)
                .subscribe(favorites => {this.favorites = favorites;loading.dismiss();toast.present();},
                  errmess => {this.errMess = errmess;loading.dismiss();toast.present();});
+             this.storage.remove('id');
            }
          }
        ]

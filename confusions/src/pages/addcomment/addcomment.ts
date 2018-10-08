@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {Validators,FormGroup,FormBuilder} from "@angular/forms";
 import {Comment} from "../shared/comment";

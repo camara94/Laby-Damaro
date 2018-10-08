@@ -7,8 +7,7 @@ import {Dish} from "../shared/dish";
 import { ServicesProvider } from './../../providers/services/services';
 import {FavoritesProvider} from "../../providers/favorites/favorites";
 import {AddcommentPage} from "../addcomment/addcomment";
-
-
+import { Storage} from "@ionic/storage";
 
 /**
  * Generated class for the DishdetailPage page.
@@ -34,7 +33,8 @@ export class DishdetailPage {
               private actionSheetCtrl:ActionSheetController,
               private  viewCtrl:ViewController,
               private modalCtrl:ModalController,
-              @Inject('BaseURL') private BaseURL) {
+              @Inject('BaseURL') private BaseURL,
+              private storage:Storage) {
     this.dish = navParams.get('dish');
     this.numcomments = this.dish.comments.length;
     let total = 0;
@@ -50,6 +50,7 @@ export class DishdetailPage {
   addFavorites() {
     console.log('Adding to Favorites', this.dish.id);
     this.favorite = this.favoriteservice.addFavorite(this.dish.id);
+    this.storage.set('dish',this.dish);
     this.toastCtrl.create({
       message: 'Dish ' + this.dish.id + ' added successuffully',
       position:'top',
