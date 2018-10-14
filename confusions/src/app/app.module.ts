@@ -13,6 +13,7 @@ import { DishdetailPage } from "../pages/dishdetail/dishdetail";
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import  { LocalNotifications } from "@ionic-native/local-notifications";
 import { baseURL } from './../pages/shared/baseurl';
 import { DishProvider } from '../providers/dish/dish';
 import { LeaderProvider } from '../providers/leader/leader';
@@ -63,6 +64,7 @@ import {LoginPage} from "../pages/login/login";
     ContactService,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    LocalNotifications,
     { provide: 'BaseURL', useValue: baseURL },
     DishProvider,
     LeaderProvider,

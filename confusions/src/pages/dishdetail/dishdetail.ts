@@ -8,6 +8,7 @@ import { ServicesProvider } from './../../providers/services/services';
 import {FavoritesProvider} from "../../providers/favorites/favorites";
 import {AddcommentPage} from "../addcomment/addcomment";
 import { Storage} from "@ionic/storage";
+import {LocalNotifications} from "@ionic-native/local-notifications";
 
 /**
  * Generated class for the DishdetailPage page.
@@ -34,7 +35,8 @@ export class DishdetailPage {
               private  viewCtrl:ViewController,
               private modalCtrl:ModalController,
               @Inject('BaseURL') private BaseURL,
-              private storage:Storage) {
+              private storage:Storage,
+              private localNotifications:LocalNotifications) {
     this.dish = navParams.get('dish');
     this.numcomments = this.dish.comments.length;
     let total = 0;
@@ -56,6 +58,12 @@ export class DishdetailPage {
       position:'top',
       duration:3000
     }).present();
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'Single ILocalNotification',
+      sound: 'images/422.mp3',
+      data: { secret: this.dish.id }
+    });
   }
 
     presentActionSheet() {

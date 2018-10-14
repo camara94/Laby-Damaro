@@ -6,6 +6,7 @@ import {
 import { FavoritesProvider} from "../../providers/favorites/favorites";
 import { Dish} from "../shared/dish";
 import { Storage } from "@ionic/storage";
+import {LocalNotifications} from "@ionic-native/local-notifications";
 
 /**
  * Generated class for the FavoritesPage page.
@@ -20,7 +21,7 @@ import { Storage } from "@ionic/storage";
 })
 export class FavoritesPage implements OnInit {
 
-  favorites: Dish[];
+  favorites : Array<any>;
   errMess: string;
   id:number;
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -29,16 +30,45 @@ export class FavoritesPage implements OnInit {
               private loadingCtrl:LoadingController,
               private alertCtrl:AlertController,
               @Inject('BaseURL') private BaseURL,
-              private storage : Storage) {
+              private storage : Storage,
+              private localNotifications:LocalNotifications) {
+      this.favorites = [];
+    this.storage.get('favorite').then(favorites =>{
+      if(favorites){
+        console.log(favorites);
+        this.favorites = favorites;
+      }
+      else{
+        console.log("favorite not define");
+      }
+    })
   }
 
   ngOnInit() {
     this.favoriteservice.getFavorites()
       .subscribe(favorites => this.favorites = favorites,
         errmess => this.errMess = errmess);
-    this.storage.set('dish',this.favorites);
+    this.addFavorite(this.id);
   }
 
+  addFavorite(id:number):boolean{
+    if(this.isFavorite(id)){
+      this.favorites.push(id);
+      this.storage.set('dish',this.favorites);
+      this.localNotifications.schedule({
+        id:id,
+        text:"Dish" + id + " added successfully"
+      })
+    }
+    console.log("favorites",this.favorites);
+    return true;
+  }
+
+  isFavorite(id:number):boolean{
+    if(this.favorites.indexOf(id)>=0){
+      return true;
+    }
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad FavoritesPage');
   }
