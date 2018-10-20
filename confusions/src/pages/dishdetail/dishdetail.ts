@@ -9,6 +9,7 @@ import {FavoritesProvider} from "../../providers/favorites/favorites";
 import {AddcommentPage} from "../addcomment/addcomment";
 import { Storage} from "@ionic/storage";
 import {LocalNotifications} from "@ionic-native/local-notifications";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 /**
  * Generated class for the DishdetailPage page.
@@ -36,7 +37,8 @@ export class DishdetailPage {
               private modalCtrl:ModalController,
               @Inject('BaseURL') private BaseURL,
               private storage:Storage,
-              private localNotifications:LocalNotifications) {
+              private localNotifications:LocalNotifications,
+              private socialSharing:SocialSharing) {
     this.dish = navParams.get('dish');
     this.numcomments = this.dish.comments.length;
     let total = 0;
@@ -76,13 +78,37 @@ export class DishdetailPage {
             handler: () => {
               console.log('Destructive clicked');
             }
-          },{
+          },
+          {
             text: 'Add Comment',
             handler: () => {
               console.log('Archive clicked');
                this.openComment();
             }
-          },{
+          },
+          {
+            text:'Sharing via Facebook',
+            handler:()=>{
+              this.socialSharing.shareViaFacebook(
+                this.dish.name +' -- '+this.dish.description,
+                this.BaseURL + this.dish.image, ''
+              )
+                .then(()=>{console.log("sharing")})
+                .catch(()=>{console.log("not sharing")})
+            }
+          },
+          {
+            text:'Sharing via Twitter',
+            handler:()=>{
+              this.socialSharing.shareViaTwitter(
+                this.dish.name +' -- '+this.dish.description,
+                this.BaseURL + this.dish.image, ''
+              )
+                .then(()=>{console.log("sharing")})
+                .catch(()=>{console.log("not sharing")})
+            }
+          },
+          {
             text: 'Cancel',
             role: 'cancel',
             handler: () => {

@@ -19,7 +19,7 @@
 <ion-content>
 
   <ion-card >
-      
+
       <ion-card-content>
         <ion-card-title color="primary">
           Location Information
@@ -35,14 +35,14 @@
       </ion-card-content>
       <ion-row no-padding>
           <ion-col>
-            <button ion-button clear small color="primary" icon-start>
+            <button ion-button clear small color="primary" icon-start (click)="callRestaurant()">
               <ion-icon name='call'></ion-icon>
               CALL
             </button>
           </ion-col>
-          
+
           <ion-col text-right>
-            <button ion-button clear small color="primary" icon-start>
+            <button ion-button clear small color="primary"  (click)="sendEmail()" icon-start>
               <ion-icon name='mail'></ion-icon>
               EMAIL
             </button>

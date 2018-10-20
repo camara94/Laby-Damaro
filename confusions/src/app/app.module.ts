@@ -14,6 +14,12 @@ import { DishdetailPage } from "../pages/dishdetail/dishdetail";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import  { LocalNotifications } from "@ionic-native/local-notifications";
+import { EmailComposer } from "@ionic-native/email-composer";
+import { SocialSharing } from "@ionic-native/social-sharing";
+import { Camera } from "@ionic-native/camera";
+import { Network } from "@ionic-native/network";
+import { CallNumber } from "@ionic-native/call-number";
+
 import { baseURL } from './../pages/shared/baseurl';
 import { DishProvider } from '../providers/dish/dish';
 import { LeaderProvider } from '../providers/leader/leader';
@@ -26,6 +32,7 @@ import {FavoritesPage} from "../pages/favorites/favorites";
 import {ReservationPage} from "../pages/reservation/reservation";
 import {AddcommentPage} from "../pages/addcomment/addcomment";
 import {LoginPage} from "../pages/login/login";
+import { RegisterPage } from "../pages/register/register";
 
 @NgModule({
   declarations: [
@@ -38,7 +45,8 @@ import {LoginPage} from "../pages/login/login";
     FavoritesPage,
     ReservationPage,
     AddcommentPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +65,8 @@ import {LoginPage} from "../pages/login/login";
     FavoritesPage,
     ReservationPage,
     AddcommentPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
@@ -65,11 +74,15 @@ import {LoginPage} from "../pages/login/login";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LocalNotifications,
+    EmailComposer,
+    SocialSharing,
+    Camera,
+    Network,
+    CallNumber,
     { provide: 'BaseURL', useValue: baseURL },
     DishProvider,
     LeaderProvider,
     PromotionProvider,
-    ProcessHttpmsgProvider,
     ProcessHttpmsgProvider,
     ServicesProvider,
     FavoritesProvider
